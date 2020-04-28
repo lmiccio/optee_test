@@ -30,6 +30,7 @@
 
 #include "ta_aes_perf.h"
 #include "ta_sha_perf.h"
+#include "ta_chacha20_perf.h"
 
 
 
@@ -69,6 +70,11 @@ int sha_perf_runner_cmd_parser(int argc, char *argv[]);
 void sha_perf_run_test(int algo, size_t size, unsigned int n,
 				unsigned int l, int random_in, int offset,
 				int warmup, int verbosity);
+
+int chacha20_perf_runner_cmd_parser(int argc, char *argv[]);
+void chacha20_perf_run_test(int mode, int keysize, int decrypt, size_t size,
+		       size_t unit, unsigned int n, unsigned int l,
+		       int random_in, int in_place, int warmup, int verbosity);
 
 #ifdef CFG_SECURE_DATA_PATH
 int sdp_basic_runner_cmd_parser(int argc, char *argv[]);
