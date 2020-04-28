@@ -29,6 +29,9 @@ static void xtest_tee_benchmark_2002(ADBG_Case_t *Case_p);
 static void xtest_tee_benchmark_2011(ADBG_Case_t *Case_p);
 static void xtest_tee_benchmark_2012(ADBG_Case_t *Case_p);
 
+/* CHACHA20 benchmarks */
+static void xtest_tee_benchmark_2021(ADBG_Case_t *Case_p);
+
 /* ----------------------------------------------------------------------- */
 /* -------------------------- SHA Benchmarks ----------------------------- */
 /* ----------------------------------------------------------------------- */
@@ -103,3 +106,24 @@ ADBG_CASE_DEFINE(benchmark, 2011, xtest_tee_benchmark_2011,
 		"TEE AES Performance test (TA_AES_ECB)");
 ADBG_CASE_DEFINE(benchmark, 2012, xtest_tee_benchmark_2012,
 		"TEE AES Performance test (TA_AES_CBC)");
+
+/* ----------------------------------------------------------------------- */
+/* -------------------------- CHACHA20 Benchmarks ------------------------ */
+/* ----------------------------------------------------------------------- */
+
+static void xtest_tee_benchmark_2021(ADBG_Case_t *c)
+{
+	UNUSED(c);
+
+	int mode = TA_CHACHA20_POLY1305; /* CHACHA20 mode */
+	int decrypt = 0; /* Encrypt */
+	int keysize = CHACHA20_POLY1305_256;
+	size_t size = 1024;	/* Buffer size */
+
+	chacha20_perf_run_test(mode, keysize, decrypt, size, CRYPTO_DEF_UNIT_SIZE,
+		CRYPTO_DEF_COUNT, CRYPTO_DEF_LOOPS, CRYPTO_USE_RANDOM,
+		AES_PERF_INPLACE, CRYPTO_DEF_WARMUP, CRYPTO_DEF_VERBOSITY);
+}
+
+ADBG_CASE_DEFINE(benchmark, 2021, xtest_tee_benchmark_2021,
+		"TEE CHACHA20 Performance test (TA_CHACHA20_POLY1305)");
