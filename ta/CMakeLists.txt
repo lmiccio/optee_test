@@ -5,6 +5,7 @@ add_library(${PROJECT_NAME} INTERFACE)
 target_include_directories(${PROJECT_NAME}
 	INTERFACE include
 	INTERFACE aes_perf/include
+	INTERFACE chacha20_perf/include
 	INTERFACE concurrent/include
 	INTERFACE concurrent_large/include
 	INTERFACE create_fail_test/include

@@ -34,6 +34,7 @@ TA_DIRS := create_fail_test \
 	   storage_benchmark \
 	   sha_perf \
 	   aes_perf \
+	   chacha20_perf \
 	   socket
 
 ifeq ($(CFG_SECURE_DATA_PATH),y)
